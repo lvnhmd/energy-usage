@@ -1,48 +1,30 @@
 import React from 'react';
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
-import meterReadingsData from './data/meterReadingsSample.json';
+import EnergyUsage from './components/energy-usage';
+import MeterReadings from './components/meter-readings';
 
-export default () => {
-  const meterReadings = meterReadingsData.electricity;
-  const meterReadingsRows = meterReadings.map(reading => (
-    <tr key={reading.readingDate}>
-      <td>{reading.readingDate}</td>
-      <td>{reading.cumulative}</td>
-      <td>{reading.unit}</td>
-    </tr>
-  ));
+class App extends React.Component {
 
-  const energyUsageData = [];
-  for(let i = 0; i < meterReadings.length - 2; i++) {
-    const energyUsage =
-      meterReadings[i+1].cumulative - meterReadings[i].cumulative;
-    energyUsageData.push({
-      date: meterReadings[i+1].readingDate,
-      energyUsage,
-    });
+  constructor() {
+    super();
+    this.state = {
+      meterReadings: []
+    }
   }
-  
-  return (
-    <div>
-      <h2>Energy Usage</h2>
-      <BarChart width={1400} height={400} data={energyUsageData}>
-        <XAxis dataKey="date" />
-        <YAxis dataKey="energyUsage" />
-        <CartesianGrid horizontal={false} />
-        <Tooltip />
-        <Bar dataKey="energyUsage" fill="#03ad54" isAnimationActive={false} />
-      </BarChart>
-      <h2>Meter Readings</h2>
-      <table>
-        <tbody>
-          <tr>
-            <th>Date</th>
-            <th>Reading</th>
-            <th>Unit</th>
-          </tr>
-          {meterReadingsRows}
-        </tbody>
-      </table>
-    </div>
-  );
+
+  componentDidMount() {
+    fetch('https://storage.googleapis.com/bulb-interview/meterReadings.json')
+      .then(response => response.json())
+      .then(data => this.setState({ meterReadings: data.electricity }));
+  }
+
+  render() {
+    return (
+      <div>
+        <EnergyUsage meterReadings={this.state.meterReadings} />
+        <MeterReadings meterReadings={this.state.meterReadings} />
+      </div>
+    );
+  }
 };
+
+export default App;
