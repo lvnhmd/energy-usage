@@ -1,6 +1,6 @@
 import React from 'react';
 
-class MeterReadings extends React.Component {
+class MeterReadingsTable extends React.Component {
 
     render() {
 
@@ -29,4 +29,4 @@ class MeterReadings extends React.Component {
             </div>);
     }
 }
-export default MeterReadings;
+export default MeterReadingsTable;

@@ -1,6 +1,6 @@
 import React from 'react';
-import EnergyUsage from './components/energy-usage';
-import MeterReadings from './components/meter-readings';
+import EnergyUsageChart from './components/energy-usage-chart';
+import MeterReadingsTable from './components/meter-readings-table';
 
 class App extends React.Component {
 
@@ -20,8 +20,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <EnergyUsage meterReadings={this.state.meterReadings} />
-        <MeterReadings meterReadings={this.state.meterReadings} />
+        <EnergyUsageChart meterReadings={this.state.meterReadings} />
+        <MeterReadingsTable meterReadings={this.state.meterReadings} />
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
-class EnergyUsage extends React.Component {
+class EnergyUsageChart extends React.Component {
 
     render() {
 
@@ -28,4 +28,4 @@ class EnergyUsage extends React.Component {
         </div>);
     }
 }
-export default EnergyUsage;
+export default EnergyUsageChart;
