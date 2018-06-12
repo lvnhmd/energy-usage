@@ -12,7 +12,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://storage.googleapis.com/bulb-interview/meterReadings.json')
+    fetch('https://storage.googleapis.com/bulb-interview/meterReadingsReal.json')
       .then(response => response.json())
       .then(data => this.setState({ meterReadings: data.electricity }));
   }
